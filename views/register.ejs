@@ -11,6 +11,11 @@
             <div class="alert alert-danger"><%= error %> </div>
 
         <% } %>
+        <% if (flash) { %>
+         <% for( let index = 0; index < flash.length; index++ ) { %>
+            <div class="alert alert-danger"><%= flash[index].message %> </div>
+         <% } %>
+        <% } %>
         <div class="card p-5 w-75 m-auto">
             <form method="POST" action="/handleRegister">
                 <input class="form-control w-100" placeholder="Enter your Name" type="text" name="name">

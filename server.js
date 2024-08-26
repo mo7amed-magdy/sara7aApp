@@ -11,6 +11,7 @@ import messageRouter from './src/messages/message.routes.js';
 import userRouter from './src/user/user.routes.js';
 import session from 'express-session';
 import  MongoSession  from 'connect-mongodb-session';
+import flash from "connect-flash"
 
 const MongoDBStore = MongoSession(session)
 
@@ -30,11 +31,13 @@ app.use(session({
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 app.use(express.static('public'))
+app.use(flash())
 app.use(homeRouter)
 app.use(registerRouter)
 app.use(loginRouter)
 app.use(messageRouter)
 app.use(userRouter)
+
 
 app.get('/logout' ,(req,res) =>{
     req.session.destroy(function(err) {
